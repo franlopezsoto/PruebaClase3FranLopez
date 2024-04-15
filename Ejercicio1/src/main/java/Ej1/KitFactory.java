@@ -6,4 +6,3 @@ public class KitFactory implements ElementoFactory {
             return new Kit(codigo);
         }
     }
-}
