@@ -17,15 +17,23 @@ public class Kit implements Elemento {
 
     @Override
     public double getPrecio() {
-        double precioTotal = 0;
-        for (Elemento elemento : elementos) {
-            precioTotal += elemento.getPrecio();
-        }
-        return precioTotal * 0.9; // Aplicamos el descuento del 10%
+        return aplicarDescuento(calcularPrecioTotal());
     }
 
     @Override
     public int getCodigo() {
         return codigo;
+    }
+
+    private double calcularPrecioTotal() {
+        double precioTotal = 0;
+        for (Elemento elemento : elementos) {
+            precioTotal += elemento.getPrecio();
+        }
+        return precioTotal;
+    }
+
+    private double aplicarDescuento(double precioTotal) {
+        return precioTotal * 0.9; // Aplicamos el descuento del 10%
     }
 }
