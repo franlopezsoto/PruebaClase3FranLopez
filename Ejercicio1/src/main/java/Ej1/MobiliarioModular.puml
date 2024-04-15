@@ -1,0 +1,43 @@
+@startuml
+
+interface Elemento {
+  +getPrecio(): double
+  +getCodigo(): int
+}
+
+class ElementoSimple {
+  -precio: double
+  -codigo: int
+  +ElementoSimple(precio: double, codigo: int)
+  +getPrecio(): double
+  +getCodigo(): int
+}
+
+class Kit {
+  -elementos: List<Elemento>
+  -codigo: int
+  +Kit(codigo: int)
+  +addElemento(elemento: Elemento): void
+  +getPrecio(): double
+  +getCodigo(): int
+}
+
+interface ElementoFactory {
+  +crearElemento(precio: double, codigo: int): Elemento
+}
+
+class ElementoSimpleFactory {
+  +crearElemento(precio: double, codigo: int): Elemento
+}
+
+class KitFactory {
+  +crearElemento(precio: double, codigo: int): Elemento
+}
+
+Elemento <|.. ElementoSimple
+Elemento <|.. Kit
+ElementoFactory <|.. ElementoSimpleFactory
+ElementoFactory <|.. KitFactory
+Kit "1" o-- "*" Elemento : contains
+
+@enduml
